@@ -1,0 +1,28 @@
+<div class="app-popup" *ngIf="showPopup">
+  <div class="inner-popup {{dataProps.title}}">
+    <div class="popup-close" *ngIf="dataProps.title !== 'timeout' &&  dataProps.title !== 'help'"> <img src="assets/images/close.png" (click)="onChange()" /> </div>
+     
+      <div *ngIf='dataProps.content' class="popup-content">
+          <div [class]="dataProps.title"> 
+           <div  *ngIf="dataProps.title === 'timeout'" class="timeout-display"> Timeout !</div> 
+           <div>{{dataProps.content}}</div>
+          </div>
+          <div *ngIf="dataProps.title === 'help'" class="help-data">
+            <ol>
+              <li *ngFor="let value of dataProps.data;let k = index">
+                {{value}}
+              </li>
+            </ol>
+
+          </div>
+          <div class="popup-begin-quiz" *ngIf="dataProps.title == 'help'"> 
+              <span (click)="onChange()">  Continue </span>
+              </div>
+          <div class="{{dataProps.title}} buttonsclass" *ngIf="dataProps.title !== 'help'" >
+            <div (click)="submitQuiz()">{{dataProps.button}}</div>
+            <div (click)="onChange()" *ngIf="dataProps.title === 'submit'">No</div>
+          </div>
+      </div>  
+  </div>
+  
+</div>

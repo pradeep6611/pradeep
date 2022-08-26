@@ -1,0 +1,132 @@
+.app-popup{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    padding : 3px;
+    z-index : 99;
+    position: absolute;
+    top: 0px;
+    left : 0px;
+    background-color: rgba(0,0,0,0.42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-popup .inner-popup{
+    width : 65%;
+    height : 65%;
+    background-color: #f4f2ed;
+    border-radius: 8px;
+    border : 2px solid #3f3d3d;
+    color: #3f3d3d;
+    position: relative;
+}
+.app-popup .inner-popup .popup-close{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: -16px;
+    top: -14px;
+}
+.app-popup .inner-popup .popup-close >img{
+    max-width: 100%;
+}
+.popup-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.popup-content .submit, .popup-content .timeout{
+    width: 100%;
+    height: 50%;
+    display: FLEX;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.popup-content .submit.buttonsclass, .popup-content .timeout.buttonsclass{
+    justify-content: space-evenly;
+    flex-direction: row !important;
+}
+.popup-content .submit.buttonsclass >div, .popup-content .timeout.buttonsclass >div{
+    padding: 8px 15px 8px 15px;
+    border-radius: 8px;
+    margin  : 0px 0px 0px 10px;
+    box-shadow: 0px 2px 13px #0000008c;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    background-color: #d9682e;
+    color: white;
+    font-weight: bold;
+}
+
+.app-popup .inner-popup.submit, .app-popup .inner-popup.timeout{
+    width: 30%;
+    height: 25%;
+}
+.timeout-display{
+    font-size: 25px;
+    margin: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+
+.popup-content .help{
+    width: 100%;
+    height: 20%;
+    font-weight: bold;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content .help-data{
+    width: 99%;
+    height: 60%;
+    font-size: 16px;
+    overflow-y: scroll;
+}
+.popup-content .help-data li{
+    margin: 0px 0px 4px 0px;
+}
+.app-popup .inner-popup.help{
+    animation : zoomify 300ms ease-in-out;
+}
+@keyframes zoomify{
+    0%{
+        transform : scale(0);
+    }
+    100%{
+        transform : scale(1);
+    }
+}
+
+    .help-data::-webkit-scrollbar {
+        width: 7px;
+    }
+    .help-data::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+
+    .help-data::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: #ca6d3d;
+        margin-right: 5px;
+    }
+ .popup-begin-quiz{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+ }
+ .popup-begin-quiz > span{
+    background-color: #d9682e;
+    color: white;
+    padding : 10px;
+    cursor: pointer;
+    border-radius:8px; 
+ }

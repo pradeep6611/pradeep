@@ -1,0 +1,58 @@
+.app-header{
+    height: 70px;
+    background-color: #3f3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+}
+.app-header >img {
+    max-width: 75px;
+    width: 20%;
+}
+.app-header .app-heading{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-header .app-helper{
+    width : 10%;
+    height: 100%;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+}
+.app-header .app-helper >span{
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #d9682e;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.app-helper >div:nth-child(1){
+    width : 70%;
+    height : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-helper >div:nth-child(2){
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-helper >div:nth-child(2) >img{
+    max-width: 40%;
+max-height: 50%;
+}
+
+
+

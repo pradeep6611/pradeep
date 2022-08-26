@@ -1,0 +1,130 @@
+<span class="back-button">
+  <span class="icon"><img src="./assets/images/back_button.png" /></span>
+  <span class="button" (click)="backToLogin()">Login</span>
+</span>
+<div class="app-register-page">
+
+  <div class="register-box">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="imgcontainer">
+        <img src="./assets/images/logo.png" alt="Avatar" class="avatar">
+      </div>
+
+      <div class="container">
+
+        <!--- For UserId block-->
+        <div class="form-group">
+          <label for="uname"><b>TCS User Id</b></label>
+          <div class="input-group" [ngClass]="{'has-error' : (registerForm.get('userId').errors) && (registerForm.get('userId').touched || registerForm.get('userId').dirty || invalidUserId)}">
+              <input type="text" class="form-control" formControlName="userId" (ngModelChange)="duplicateCheck()">
+          </div>
+          <div class="error-block"
+            *ngIf=" (registerForm.get('userId').errors) && (registerForm.get('userId').touched || registerForm.get('userId').dirty || invalidUserId)">
+            <span *ngIf="registerForm.get('userId').errors.required">
+              TCS User Id required.
+            </span>
+            <span
+              *ngIf="registerForm.get('userId').errors.minlength && registerForm.get('userId').errors.minlength.actualLength < 3 && !registerForm.get('userId').errors.pattern">
+              Minimum three digits required.
+            </span>
+            <span *ngIf="registerForm.get('userId').errors.pattern">
+              TCS User Id Must be in digits.
+            </span>
+            <span *ngIf="duplicateTcsId">
+              TCS User Id already registered.
+            </span>
+          </div>
+        </div>
+
+        <!--- End UserId block-->
+
+
+        <!-- For User Email Id-->
+        <div class="form-group">
+          <label for="uemail"><b>Email Id</b></label>
+          <div class="input-group" [ngClass]="{'has-error' : (registerForm.get('emailId').errors) && (registerForm.get('emailId').touched || registerForm.get('emailId').dirty || invalidEmailId)}">
+            <input type="text" class="form-control" formControlName="emailId">
+          </div>
+          <div class="error-block"
+            *ngIf=" (registerForm.get('emailId').errors) && (registerForm.get('emailId').touched || registerForm.get('emailId').dirty || invalidEmailId)">
+            <span *ngIf="registerForm.get('emailId').errors.required">
+              Email Id required
+            </span>
+            <span *ngIf="registerForm.get('emailId').errors.pattern">
+              Invalid Email Id.
+            </span>
+          </div>
+        </div>
+        <!-- End of Email Id Block-->
+
+        <!-- For User Team Name -->
+        <div class="form-group">
+          <label for="uteamName"><b>Team Name</b></label>
+          <div class="input-group" [ngClass]="{'has-error' : (registerForm.get('teamName').errors) && (registerForm.get('teamName').touched || registerForm.get('teamName').dirty || invalidTeamName)}">
+            <select formControlName="teamName" class="form-control">
+              <option value="" disabled selected class="default-select-option">Choose Application Type</option>
+              <option *ngFor="let eachTeam of teamsArray$ | async" [ngValue]="eachTeam.teamID">
+                {{ eachTeam.teamName }}
+              </option>
+            </select>
+          </div>
+          <div class="error-block"
+            *ngIf=" (registerForm.get('teamName').errors) && (registerForm.get('teamName').touched || registerForm.get('teamName').dirty || invalidTeamName)">
+            <span *ngIf="registerForm.get('teamName').errors.required">
+              Team Name required
+            </span>
+          </div>
+        </div>
+        <!-- Enf of Team Block -->
+
+        <!--- For Password block-->
+        <div class="form-group">
+          <label for="password"><b>Password</b></label>
+          <div class="input-group" [ngClass]="{'has-error' : (registerForm.get('password').errors) && (registerForm.get('password').touched || registerForm.get('password').dirty || invalidPassword)}">
+            <input type="password" class="form-control" formControlName="password">
+            <!-- <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}"
+                  (click)="toggleFieldTextType()"></i>
+              </span>
+            </div> -->
+          </div>
+          <div class="error-block"
+            *ngIf=" (registerForm.get('password').errors) && (registerForm.get('password').touched || registerForm.get('password').dirty || invalidPassword)">
+            <span *ngIf="registerForm.get('password').errors.required">
+              Password required
+            </span>
+          </div>
+        </div>
+        <!--- End Password block-->
+
+        <!-- For the Confirm Password Block-->
+        <div class="form-group">
+          <label for="ucPassword"><b>Confirm Password</b></label>
+          <div class="input-group"
+            [ngClass]="{'has-error' : (registerForm.get('c_password').errors) && (registerForm.get('c_password').touched || registerForm.get('c_password').dirty || invalidCPassword)}">
+            <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" formControlName="c_password">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}"
+                  (click)="toggleFieldTextType()"></i>
+              </span>
+            </div>
+          </div>
+          <div class="error-block"
+            *ngIf=" (registerForm.get('c_password').touched || registerForm.get('c_password').dirty || invalidCPassword)">
+            <span *ngIf="(registerForm.get('c_password').errors && registerForm.get('c_password').errors.required) || (registerForm.get('c_password').value && (registerForm.get('password').value != registerForm.get('c_password').value))">
+              Passwords do not match.
+            </span>
+          </div>
+        </div>
+        <!-- End of Confirm Password Block-->
+
+        <button class="submit-button" type="submit">Register</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

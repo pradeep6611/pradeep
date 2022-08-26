@@ -1,0 +1,7 @@
+<app-header  (helpBox) = "openHelpBox($event)" [helpButton]= "hideHelp"></app-header>
+
+<app-quiz (hideHelp)="hideHelpButton($event)" ></app-quiz>
+
+<app-footer (helpBox) = "openHelpBox($event)"></app-footer>
+
+<app-popup [dataProps]="helpBoxData" (submit)="submitQuiz()"></app-popup>

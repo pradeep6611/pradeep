@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    overflow: hidden;
+    margin: 0px !important;
+    width: 100%;
+    height: 100vh;
+    background-color: #afafaf30;
+    font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}

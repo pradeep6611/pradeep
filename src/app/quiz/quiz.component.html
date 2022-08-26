@@ -1,0 +1,75 @@
+
+
+
+
+<app-timer [quizTime] = "totalTime" (saveQuiz)="submitTotalQuiz($event)" *ngIf="!start_Quiz" class="app-timer-child">
+
+</app-timer>
+
+
+<div class=" app-quiz {{showToast ? 'blurit' : ''}}" [ngStyle]=" start_Quiz ? {'display': 'flex','justify-content':'center', 'align-items':'center'} :''" >
+
+  <!-- <div class="start-quiz" *ngIf="start_Quiz" (click)="startQuiz($event)">
+    Start Quiz
+  </div> -->
+
+    <div class="inner-quiz-block"  *ngIf="start_Quiz">
+
+    <div class="app-starting-page">
+        
+        <div class="blocks" *ngFor="let module of selectedModule$ | async; let p = index">
+                <div class="top">
+                    <img src="assets/images/{{module.module_name}}.png" />
+                </div>
+                <div class="middle"> {{module.module_name}}</div>
+                <div class="bottom" > 
+                        <div class="start" (click)="startQuiz($event, module)" *ngIf="verifyModuleCompletion(module)">Start</div>
+                        <div class="completed-quiz" *ngIf="!verifyModuleCompletion(module)">
+                            <div class="score-card"> 
+                                <img src="assets/images/{{percentageCalculation(finalResultDisplay(module.module_id), module.questions.length) >= 80 ? 'tick': 'close_button'}}.png" />
+                                <span> {{percentageCalculation(finalResultDisplay(module.module_id), module.questions.length)}}% </span>
+                            </div>
+                            <div class="tryagain-button" (click)="retakeExam($event, module)">
+                                Retake
+                            </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+    </div>
+  <div class="app-questions" *ngIf="!start_Quiz">
+      <div class="module_name">{{loadedModule.module_name}} :</div>
+            <div class="answerd-questions"> 
+                Answered : <span> {{answersArray.length}} </span>/{{questions.length}}</div>      
+        <fieldset>
+          <legend>
+            <div class="question_number"><span>Q</span>{{displayQuestion+1}}</div>
+            </legend>
+      <div class="question-name">
+          {{loadedQuestions.q_name}}
+      </div>
+      <div class="question-options">
+        <span class="options" *ngFor="let options of loadedQuestions.q_options; let i = index" >
+            <input class="options-inner" type="radio" [attr.id]="displayQuestion + '-' +i" [attr.name]="loadedQuestions.id" (change)="optionSelected(options, loadedQuestions.id, loadedQuestions.q_answer)" [checked] ="checkedSatus(loadedQuestions.id, options.val)" />
+            <label [for]="displayQuestion + '-' +i" [attr.id]="displayQuestion + '--' +i">{{options.val}}</label>
+        </span>
+      </div>
+
+      </fieldset>
+
+      <div class="question-buttons">
+          <div class="button-previous buttons" (click)="actionChange('previous')" *ngIf="displayQuestion > 0">Previous</div>
+          <div class="button-next buttons" (click)="actionChange('next')" *ngIf="questions.length > displayQuestion + 1">Next</div>
+          <div class="button-save-next buttons" (click)="actionChange('savenext')"  >Submit</div>
+      </div>
+  </div>
+</div>
+<div class="toast-model" *ngIf="showToast">
+    
+    <div class="app-toast">
+            <span *ngIf="scoredPercentage >= 80">Congratulations, you have scored {{scoredPercentage}}%</span> 
+                <span *ngIf="scoredPercentage  < 80"> Sorry, you haven't cleared the test. </span> 
+                <div class="toast-close"> <img src="assets/images/close.png" (click)="showToast = false" /> </div>
+        </div>  
+
+</div>
